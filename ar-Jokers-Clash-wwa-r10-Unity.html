@@ -1849,7 +1849,83 @@ I18N: { namespaces: ["translation"], defaultNs: "translation" }
 };
 })();
 </script>
-</head>
+<style id="playable-loader-fx">#lander-loader.figma-loader::after{
+content:"";
+position:absolute;
+top:0;
+right:0;
+bottom:0;
+left:0;
+background:rgba(0,0,0,.34);
+-webkit-backdrop-filter:blur(5px);
+backdrop-filter:blur(5px);
+pointer-events:none;
+z-index:0;
+}
+.figma-loader-logo{
+z-index:2!important;
+top:20%!important;
+width:min(108vw,56vh)!important;
+-webkit-transform-origin:50% 68%;
+transform-origin:50% 68%;
+-webkit-transition:none!important;
+transition:none!important;
+-webkit-animation:playable-logo-approach 2.45s cubic-bezier(.22,1,.36,1) both,playable-logo-breathe 3.4s ease-in-out 2.45s infinite;
+animation:playable-logo-approach 2.45s cubic-bezier(.22,1,.36,1) both,playable-logo-breathe 3.4s ease-in-out 2.45s infinite;
+will-change:transform,opacity;
+}
+.figma-loader-logo>img{
+display:block;
+width:100%;
+height:auto;
+-webkit-filter:drop-shadow(0 16px 28px rgba(0,0,0,.55));
+filter:drop-shadow(0 16px 28px rgba(0,0,0,.55));
+}
+.figma-loader-control{
+z-index:3!important;
+bottom:14%!important;
+-webkit-flex-direction:column;
+flex-direction:column;
+}
+#playable-loader-disclaimer{
+position:relative;
+left:auto;
+right:auto;
+bottom:auto;
+z-index:3;
+width:86vw;
+margin:12px 0 0;
+color:#9a9a9a;
+font:400 13px/1.4 Arial,Helvetica,sans-serif;
+letter-spacing:.02em;
+text-align:center;
+pointer-events:none;
+text-shadow:0 1px 2px rgba(0,0,0,.85);
+}
+@media (orientation:landscape){
+.figma-loader-logo{width:min(46vw,70vh)!important;top:18%!important}
+.figma-loader-control{bottom:10%!important}
+#playable-loader-disclaimer{width:50vw}
+}
+@-webkit-keyframes playable-logo-approach{
+0%{-webkit-transform:translate(-50%,-4%) scale(.72);transform:translate(-50%,-4%) scale(.72);opacity:.25}
+62%{-webkit-transform:translate(-50%,-22%) scale(1.16);transform:translate(-50%,-22%) scale(1.16);opacity:1}
+100%{-webkit-transform:translate(-50%,-18%) scale(1.08);transform:translate(-50%,-18%) scale(1.08);opacity:1}
+}
+@keyframes playable-logo-approach{
+0%{-webkit-transform:translate(-50%,-4%) scale(.72);transform:translate(-50%,-4%) scale(.72);opacity:.25}
+62%{-webkit-transform:translate(-50%,-22%) scale(1.16);transform:translate(-50%,-22%) scale(1.16);opacity:1}
+100%{-webkit-transform:translate(-50%,-18%) scale(1.08);transform:translate(-50%,-18%) scale(1.08);opacity:1}
+}
+@-webkit-keyframes playable-logo-breathe{
+0%,100%{-webkit-transform:translate(-50%,-18%) scale(1.08);transform:translate(-50%,-18%) scale(1.08)}
+50%{-webkit-transform:translate(-50%,-26%) scale(1.18);transform:translate(-50%,-26%) scale(1.18)}
+}
+@keyframes playable-logo-breathe{
+0%,100%{-webkit-transform:translate(-50%,-18%) scale(1.08);transform:translate(-50%,-18%) scale(1.08)}
+50%{-webkit-transform:translate(-50%,-26%) scale(1.18);transform:translate(-50%,-26%) scale(1.18)}
+}
+</style></head>
 <body>
 <template id="preland-shell">
 <div id="root" aria-label=""></div>
@@ -1863,7 +1939,7 @@ I18N: { namespaces: ["translation"], defaultNs: "translation" }
 <div id="loader-progress" class="figma-progress" role="progressbar" aria-label="" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
 <div class="figma-progress-inner"><span id="loader-progress-fill"></span></div>
 </div>
-<button id="loader-start" class="figma-start" type="button" hidden disabled><span id="loader-start-label"></span></button>
+<button id="loader-start" class="figma-start" type="button" hidden disabled><span id="loader-start-label"></span></button><p id="playable-loader-disclaimer">18+. Demo gratuita. No es un juego de dinero real.</p>
 </div>
 </div>
 <div id="final-popup" class="lander-overlay final-popup" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="final-title">
