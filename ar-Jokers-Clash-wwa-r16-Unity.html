@@ -1666,10 +1666,7 @@ popup?.setAttribute("aria-hidden", "false");
 const bridge = {
 socket,
 getLabel: (key) => settings.labels[key] || "",
-registerBonusTitle(node) {
-bonusTitleNode = node || null;
-if (bonusTitleNode) bonusTitleNode.text = settings.labels.bonusGameTitle;
-},
+registerBonusTitle(node){bonusTitleNode=node||null;if(bonusTitleNode){bonusTitleNode.text=settings.labels.bonusGameTitle;document.documentElement.dataset.bonusTransition="running"}},
 formatTotalWin: (amount) => formatTotalWin(amount, settings.currency),
 getTotalWin: () => settings.totalWin,
 showWinScene() {
@@ -1683,7 +1680,7 @@ if (button) {
 button.hidden = true;
 button.setAttribute("aria-hidden", "true");
 }
-document.documentElement.dataset.winCta = "counting";
+document.documentElement.dataset.bonusTransition="complete";document.documentElement.dataset.winCta="counting";
 requestAnimationFrame(fitWinPopupText);
 },
 showWinInstall() {
@@ -1988,19 +1985,24 @@ animation:playable-brand-pulse 1.8s ease-in-out infinite;
 }
 #playable-brand-flag{
 position:fixed;
-top:66px;
-right:4px;
-z-index:45;
-width:20%;
-max-width:72px;
-height:48px;
+top:-56px;
+right:-110px;
+z-index:200;
+width:380px;
+height:136px;
 pointer-events:none;
 background-repeat:no-repeat;
-background-position:center right;
+background-position:center center;
 background-size:contain;
+-webkit-transform:rotate(-34deg);
+transform:rotate(-34deg);
+-webkit-transform-origin:100% 0;
+transform-origin:100% 0;
 }
-#lander-loader:not(.is-hidden) ~ #playable-brand-logo,
-#lander-loader:not(.is-hidden) ~ #playable-brand-flag{
+#lander-loader:not(.is-hidden) ~ #playable-brand-logo{
+display:none!important;
+}
+html[data-bonus-transition="running"] #playable-brand-flag{
 display:none!important;
 }
 @media (orientation:landscape){
@@ -2009,7 +2011,7 @@ display:none!important;
 #playable-loader-disclaimer{bottom:6px}
 .playable-age-badge{width:34px;height:34px;font-size:12px;line-height:30px}
 #playable-brand-logo{top:52px;width:34%;max-width:220px;height:40px}
-#playable-brand-flag{top:52px;width:22%;max-width:96px;height:40px}
+#playable-brand-flag{top:-44px;right:-96px;width:300px;height:108px}
 }
 @-webkit-keyframes playable-logo-approach{
 0%{-webkit-transform:translate(-50%,-6%) scale(.88);transform:translate(-50%,-6%) scale(.88);opacity:.55}
