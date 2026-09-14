@@ -2,4 +2,4 @@
 
 Static host for Unity Ads Ad Tester. Source is built by Playable Maker (`Convert-WwaPlayable.ps1`).
 
-Open: [ar-Jokers-Clash-wwa-r25-Unity.html](./ar-Jokers-Clash-wwa-r25-Unity.html)
+Open: [ar-Jokers-Clash-wwa-r26-Unity.html](./ar-Jokers-Clash-wwa-r26-Unity.html)
